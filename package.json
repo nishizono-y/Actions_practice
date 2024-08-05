@@ -1,0 +1,20 @@
+{
+  "name": "actions_practice",
+  "version": "1.0.0",
+  "description": "\"GitHub ACtions設定練習\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nishizono-y/Actions_practice/blob/main/.github/workflows/main.yml"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.8.0",
+    "jest": "^29.7.0"
+  }
+}
