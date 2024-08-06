@@ -4,8 +4,7 @@ const helloWorld = (name = "World") => {
   console.log(`Hello, ${name}!`);
 };
 
-// 定義した名前を使ってグリーティング
-const defaultUserName = "Alice"; // ここで名前を指定
+const defaultUserName = "Alice";
 helloWorld(defaultUserName);
 
 module.exports = { helloWorld };
