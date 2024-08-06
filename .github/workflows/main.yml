@@ -119,6 +119,7 @@ jobs:
 
       - name: Deploy to Production Environment (Manual)
         run: |
+
           BRANCH_NAME=${{ github.event.inputs.deploy_branch }}
           echo "Manually deploying to Production Environment from branch ${BRANCH_NAME}..."
 
@@ -134,3 +135,4 @@ jobs:
           fi
 
           # 手動デプロイの具体的なコマンドをここに追加
+
