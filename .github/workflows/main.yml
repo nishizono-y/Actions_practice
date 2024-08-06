@@ -9,6 +9,7 @@ on:
       - develop
       - main
       - feature/**
+  workflow_dispatch:
 
 jobs:
   lint_and_test:
