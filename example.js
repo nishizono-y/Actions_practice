@@ -4,6 +4,6 @@ const helloWorld = () => {
   console.log("Hello, World!");
 };
 
-helloWorld();
+helloWorld();p
+module.exports = { helloWorld };
 
-module.exports = { helloWorld }; //
