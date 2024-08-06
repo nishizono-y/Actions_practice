@@ -13,11 +13,9 @@ on:
     inputs:
       deploy_job:
         description: "Specify which deploy job to run"
-        required: false
-        default: "none"
+        required: true
         type: choice
         options:
-          - none
           - deploy_develop
           - deploy_main
 
