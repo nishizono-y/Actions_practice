@@ -68,6 +68,7 @@ jobs:
 
   manual_deploy_develop:
     runs-on: ubuntu-latest
+    needs: lint_and_test
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -79,6 +80,7 @@ jobs:
 
   manual_deploy_main:
     runs-on: ubuntu-latest
+    needs: lint_and_test
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
