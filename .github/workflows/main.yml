@@ -1,14 +1,18 @@
 name: "hankyu_restaurant_practice"
 
 on:
+  pull_request:
+    branches:
+      - develop
   push:
     branches:
-      - "**"
+      - develop
+      - main
+      - feature/**
 
 jobs:
-  build:
+  lint_and_test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -26,3 +30,59 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+  deploy:
+    if: github.ref == 'refs/heads/develop' && success()
+    runs-on: ubuntu-latest
+    needs: lint_and_test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Development Environment
+        run: |
+          echo "開発環境にデプロイ中..."
+
+  main_test:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    needs: lint_and_test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+  manual_deploy_develop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Development Environment (Manual)
+        run: |
+          echo "Manually deploying to Development Environment..."
+          # 手動デプロイの具体的なコマンドをここに追加
+
+  manual_deploy_main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production Environment (Manual)
+        run: |
+          echo "Manually deploying to Production Environment..."
+          # 手動デプロイの具体的なコマンドをここに追加
