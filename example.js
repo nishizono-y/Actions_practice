@@ -6,4 +6,4 @@ const helloWorld = () => {
 
 helloWorld();
 
-module.exports = { helloWorld }; // ここを追加
+module.exports = { helloWorld };

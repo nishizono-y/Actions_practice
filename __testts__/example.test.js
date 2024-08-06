@@ -1,4 +1,4 @@
-// __tests__/example.test.js
+// Jest test for the helloWorld function
 
 const { helloWorld } = require("../example");
 
