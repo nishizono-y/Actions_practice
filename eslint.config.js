@@ -11,10 +11,8 @@ const config = [
         sourceType: "module",
       },
     },
-    files: ["**/*.js"], // 対象ファイルを指定
-    rules: {
-      // ここにカスタムルールを追加
-    },
+    files: ["**/*.js"],
+    rules: {},
   },
 ];
 
