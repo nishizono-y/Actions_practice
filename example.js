@@ -1,9 +1,18 @@
 // example.js
 
-const helloWorld = () => {
-  console.log("Hello, World!");
+const helloWorld = (name) => {
+  console.log(`Hello, ${name || "World"}!`);
 };
 
-helloWorld();
+// ユーザーからの入力を受け取る
+const getUserInput = () => {
+  const prompt = require("prompt-sync")(); // prompt-syncモジュールを使用
+  const name = prompt("What is your name? "); // ユーザーに名前を尋ねる
+  return name;
+};
 
-module.exports = { helloWorld }; //
+// ユーザーの名前を取得
+const userName = getUserInput();
+helloWorld(userName);
+
+module.exports = { helloWorld };
