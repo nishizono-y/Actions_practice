@@ -86,12 +86,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 全てのブランチをフェッチする
 
       - name: Deploy to Development Environment (Manual)
         run: |
           BRANCH_NAME=${{ github.event.inputs.deploy_branch }}
           echo "Manually deploying to Development Environment from branch ${BRANCH_NAME}..."
-          git checkout $BRANCH_NAME
+
+          # リモートのブランチ情報をフェッチ
+          git fetch origin
+
+          # 指定したブランチが存在するか確認
+          if git show-ref --verify --quiet refs/heads/$BRANCH_NAME; then
+            git checkout $BRANCH_NAME
+          else
+            echo "Error: Branch '${BRANCH_NAME}' does not exist."
+            exit 1
+          fi
+
           # 手動デプロイの具体的なコマンドをここに追加
 
   manual_deploy_main:
@@ -101,10 +114,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 全てのブランチをフェッチする
 
       - name: Deploy to Production Environment (Manual)
         run: |
           BRANCH_NAME=${{ github.event.inputs.deploy_branch }}
           echo "Manually deploying to Production Environment from branch ${BRANCH_NAME}..."
-          git checkout $BRANCH_NAME
+
+          # リモートのブランチ情報をフェッチ
+          git fetch origin
+
+          # 指定したブランチが存在するか確認
+          if git show-ref --verify --quiet refs/heads/$BRANCH_NAME; then
+            git checkout $BRANCH_NAME
+          else
+            echo "Error: Branch '${BRANCH_NAME}' does not exist."
+            exit 1
+          fi
+
           # 手動デプロイの具体的なコマンドをここに追加
