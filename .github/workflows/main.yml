@@ -97,11 +97,11 @@ jobs:
           # リモートのブランチ情報をフェッチ
           git fetch origin
 
-          # 指定したブランチが存在するか確認
-          if git show-ref --verify --quiet refs/heads/$BRANCH_NAME; then
+          # リモートのブランチが存在するか確認
+          if git ls-remote --exit-code --heads origin $BRANCH_NAME; then
             git checkout $BRANCH_NAME
           else
-            echo "Error: Branch '${BRANCH_NAME}' does not exist."
+            echo "Error: Branch '${BRANCH_NAME}' does not exist on the remote."
             exit 1
           fi
 
@@ -125,11 +125,11 @@ jobs:
           # リモートのブランチ情報をフェッチ
           git fetch origin
 
-          # 指定したブランチが存在するか確認
-          if git show-ref --verify --quiet refs/heads/$BRANCH_NAME; then
+          # リモートのブランチが存在するか確認
+          if git ls-remote --exit-code --heads origin $BRANCH_NAME; then
             git checkout $BRANCH_NAME
           else
-            echo "Error: Branch '${BRANCH_NAME}' does not exist."
+            echo "Error: Branch '${BRANCH_NAME}' does not exist on the remote."
             exit 1
           fi
 
