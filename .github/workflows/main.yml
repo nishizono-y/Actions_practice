@@ -15,7 +15,7 @@ on:
         description: "Specify which deploy job to run"
         required: true
         default: "none"
-        type: choice # ここでtypeをchoiceに変更
+        type: choice
         options:
           - none
           - deploy_develop
