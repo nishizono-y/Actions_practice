@@ -1,9 +1,10 @@
 // example.js
 
-const helloWorld = () => {
-  console.log("Hello, World!");
+const helloWorld = (name = "World") => {
+  console.log(`Hello, ${name}!`);
 };
 
-helloWorld();
+const defaultUserName = "Alice";
+helloWorld(defaultUserName);
 
 module.exports = { helloWorld };
