@@ -14,8 +14,10 @@ on:
       deploy_job:
         description: "Specify which deploy job to run"
         required: true
-        type: choice
+        default: "none"
+        type: choice # ここでtypeをchoiceに変更
         options:
+          - none
           - deploy_develop
           - deploy_main
 
@@ -53,7 +55,7 @@ jobs:
           echo "開発環境にデプロイ中..."
 
   main_test:
-    if: github.ref == 'refs/heads/main' && success()
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: lint_and_test
     steps:
@@ -75,25 +77,25 @@ jobs:
         run: npm test
 
   manual_deploy_develop:
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_job == 'deploy_develop'
     runs-on: ubuntu-latest
+    needs: lint_and_test
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Deploy to Development Environment (Manual)
         run: |
-          echo "Manually deploying to Development Environment from branch ${GITHUB_REF#refs/heads/}..."
+          echo "Manually deploying to Development Environment..."
           # 手動デプロイの具体的なコマンドをここに追加
 
   manual_deploy_main:
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_job == 'deploy_main'
     runs-on: ubuntu-latest
+    needs: lint_and_test
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Deploy to Production Environment (Manual)
         run: |
-          echo "Manually deploying to Production Environment from branch ${GITHUB_REF#refs/heads/}..."
+          echo "Manually deploying to Production Environment..."
           # 手動デプロイの具体的なコマンドをここに追加
