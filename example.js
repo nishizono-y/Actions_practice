@@ -1,6 +1,6 @@
 // example.js
 
-const helloWorld = (name = "World!") => {
+const helloWorld = (name = "World") => {
   console.log(`Hello, ${name}!`);
 };
 
