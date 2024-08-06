@@ -10,6 +10,16 @@ on:
       - main
       - feature/**
   workflow_dispatch:
+    inputs:
+      deploy_job:
+        description: "Specify which deploy job to run"
+        required: true
+        default: "none"
+        type: choice # ここでtypeをchoiceに変更
+        options:
+          - none
+          - deploy_develop
+          - deploy_main
 
 jobs:
   lint_and_test:
