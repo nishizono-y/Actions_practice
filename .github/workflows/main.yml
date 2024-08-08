@@ -65,19 +65,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "20"
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run lint
-        run: npm run lint
-
-      - name: Run tests
-        run: npm test
+      - name: Run lint and tests on main
+        run: |
+          npm install
+          npm run lint
+          npm test
 
   manual_deploy_develop:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_job == 'deploy_develop'
